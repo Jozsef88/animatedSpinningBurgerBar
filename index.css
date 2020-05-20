@@ -1,0 +1,132 @@
+:root {
+    --size: 400px;
+    --rgb: 240, 235, 236;
+}
+
+/* delete * if embed */
+*,
+:before,
+:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* delete the body style as well */
+body {
+    background: rgb(240, 235, 236);
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* div element around the hamburger icon */
+.burger-wrapper {
+    position: relative;
+    overflow: visible;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ /* border: black 1px solid; */
+}
+
+/* empty label tag connected to the checkbox */
+label {
+    padding: calc(var(--size) / 2) calc(var(--size) / 2);
+    /* middle line of the hamburger icon */
+    background: linear-gradient(0deg,
+    rgba(var(--rgb), 0) 40%,
+    rgba(0, 0, 0, .2) 40%,
+    rgba(0, 0, 0, .2) 60%,
+    rgba(var(--rgb), 0) 60%                     
+    );
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+/* top and bottom lines of the hamburger icon */
+label::before,
+label::after {
+    content: "";
+    padding: 
+        calc(var(--size) / 10) 
+        calc(var(--size) / 2);
+    background: rgba(var(--rgb), .8);
+    position: absolute;
+    box-shadow: 6px 3px 4px rgba(0, 0, 0, .2),
+                10px 7px 15px rgba(0, 0, 0, .1),
+                inset 2px 3px 4px rgba(255, 255, 255, 1),
+                inset 4px 7px 20px rgba(255, 255, 255, .7);
+    transition: all .5s ease-in-out;
+}
+
+label::before {
+    top: 0;
+    left: 0;
+}
+
+label::after {
+    bottom: 0;
+    right: 0;
+}
+
+label:hover::before,
+label:hover::after { 
+    padding: 
+        calc(var(--size) / 10) 
+        calc(var(--size) / 4);
+    box-shadow: 9px 5px 10px rgba(0, 0, 0, .3),
+                13px 11px 17px rgba(0, 0, 0, .2),
+                inset 2px 3px 4px rgba(255, 255, 255, 1),
+                inset 4px 7px 20px rgba(255, 255, 255, .7);
+}
+
+/* hidden checkbox - not needed */
+input {
+    display: none;
+}
+
+/* connect styling to label depending on the checkbox's state */
+input:checked + label {
+   transform: rotate(-45deg);
+}
+
+input:checked + label:hover {
+    transform: scale(1.1) rotate(45deg);
+}
+
+input:checked + label::before,
+input:checked + label::after {
+    padding: 
+        calc(var(--size) / 10) 
+        calc(var(--size) / 5);
+    box-shadow: 6px 0px 4px rgba(0, 0, 0, .2),
+                9px 0px 15px rgba(0, 0, 0, .1),
+                inset 2px -3px 4px rgba(255, 255, 255, 1),
+                inset 4px -7px 20px rgba(255, 255, 255, .7);
+    transform: rotate(90deg);
+}
+
+input:checked + label::before {
+    top: calc(var(--size) / 10);
+    left: calc(var(--size) * (3/10));
+}
+
+input:checked + label::after {
+    bottom: calc(var(--size) / 10);
+    right: calc(var(--size) * (3/10));
+}
+
+input:checked + label:hover::before,
+input:checked + label:hover::after {
+    box-shadow: 5px -5px 4px rgba(0, 0, 0, .3),
+                7px -9px 15px rgba(0, 0, 0, .2),
+                inset 2px -3px 4px rgba(255, 255, 255, 1),
+                inset 4px -7px 20px rgba(255, 255, 255, .7);
+}
